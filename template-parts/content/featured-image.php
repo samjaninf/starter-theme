@@ -2,8 +2,13 @@
 // get current post id safely outside the loop
 $post_id = get_queried_object_id();
 
-// skip featured image for products or if none exists
-if ( is_singular( 'product' ) || ! has_post_thumbnail( $post_id ) ) {
+// skip featured image anywhere in woocommerce
+if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_shop() || is_product_taxonomy() || is_singular( 'product' ) ) ) {
+    return;
+}
+
+// skip featured image if none exists
+if ( ! has_post_thumbnail( $post_id ) ) {
     return;
 }
 
