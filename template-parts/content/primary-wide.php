@@ -7,9 +7,9 @@
 		<?php if ( is_singular() ) { ?>
 				<?php if ( is_page_template( 'page-templates/template-basic.php' ) || !is_page_template() ) { ?>
 					<h1><?php the_title(); ?></h1>
-					<?php $url_featured_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'large' ); 
+					<?php $url_featured_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'large' ); 
 					if ( !empty( $url_featured_image ) && ( !is_singular('product') ) ) { ?>
-					<img class="featured-image" src="<?php echo $url_featured_image; ?>" />
+					<img class="featured-image" src="<?php echo esc_url( $url_featured_image ); ?>" />
 					<?php } ?>
 					<?php if ( 'post' == get_post_type() ) { 
 						the_time(get_option('date_format')); 
