@@ -5,7 +5,7 @@ function hovercraft_accordion_menu() {
         'accordion_menu', // unique name 
         get_template_directory_uri().'/assets/js/accordion-menu.js', // location
         array('jquery'), // dependencies
-        '', 
+        HOVERCRAFT_VERSION,
         true
     );
 }
