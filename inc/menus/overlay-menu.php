@@ -5,7 +5,7 @@ function hovercraft_overlay_menu() {
         'overlay_menu', // unique name 
         get_template_directory_uri().'/assets/js/overlay-menu.js', // location
         array('jquery'), // dependencies
-        '', 
+        HOVERCRAFT_VERSION,
         true
     );
 }
