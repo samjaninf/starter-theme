@@ -57,9 +57,9 @@ $has_logo = $logo_url ? true : false;
 <?php if ( display_header_text() ) : ?>
 <div class="branding-text">
     <a href="<?php echo esc_url( home_url() ); ?>" class="site-title-link" rel="home">
-        <div class="site-title"><?php echo get_bloginfo( 'name' ); ?></div>
+        <div class="site-title"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></div>
     </a>
-    <div class="tagline"><?php echo get_bloginfo( 'description' ); ?></div>
+    <div class="tagline"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></div>
 </div><!-- branding-text -->
 <?php endif; ?>
 
