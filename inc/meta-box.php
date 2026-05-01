@@ -1,36 +1,40 @@
 <?php
 
-function mysite_page_metabox() {
-    add_meta_box( 
-        'remove-title', 
-        __( 'HoverCraft Theme', 'textdomain' ), 
-        'hide_title_callback', 
-        'page', 
-        'side', 
-        'high' 
+function hovercraft_page_metabox() {
+    add_meta_box(
+        'remove-title',
+        __( 'HoverCraft Theme', 'hovercraft' ),
+        'hovercraft_hide_title_callback',
+        'page',
+        'side',
+        'high'
     );
 }
-add_action( 'add_meta_boxes', 'mysite_page_metabox' );
+add_action( 'add_meta_boxes', 'hovercraft_page_metabox' );
 
-function hide_title_callback( $post ) {
-    wp_nonce_field( 'mysite_action_name', 'mysite_nonce_field_name' );
+function hovercraft_hide_title_callback( $post ) {
+    wp_nonce_field( 'hovercraft_hide_title_action', 'hovercraft_hide_title_nonce' );
 
     $value = get_post_meta( $post->ID, '_mysite_meta_hide_title', true );
     ?>
-    <label for="hide">Hide Page Title: </label><input type="checkbox" id="hide" name="hide" <?php checked( $value, 'on' ); ?>>
+    <label for="hide"><?php esc_html_e( 'Hide Page Title:', 'hovercraft' ); ?> </label><input type="checkbox" id="hide" name="hide" <?php checked( $value, 'on' ); ?>>
     <?php
 }
 
-function mysite_save_postdata( $post_id ) {
+function hovercraft_save_postdata( $post_id ) {
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
         return;
     }
 
-    if ( ! isset( $_POST['mysite_nonce_field_name'] ) ) {
+    if ( ! isset( $_POST['hovercraft_hide_title_nonce'] ) ) {
         return;
     }
 
-    if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mysite_nonce_field_name'] ) ), 'mysite_action_name' ) ) {
+    if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['hovercraft_hide_title_nonce'] ) ), 'hovercraft_hide_title_action' ) ) {
+        return;
+    }
+
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
         return;
     }
 
@@ -40,4 +44,4 @@ function mysite_save_postdata( $post_id ) {
         update_post_meta( $post_id, '_mysite_meta_hide_title', 'off' );
     }
 }
-add_action( 'save_post', 'mysite_save_postdata' );
+add_action( 'save_post', 'hovercraft_save_postdata' );
