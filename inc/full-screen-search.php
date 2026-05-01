@@ -5,7 +5,7 @@ function hovercraft_full_screen_search() {
         'hovercraft_full_screen_search', // unique name 
         get_template_directory_uri().'/assets/js/full-screen-search.js', // location
         array('jquery'), // dependencies
-        '', 
+        HOVERCRAFT_VERSION,
         true
     );
 }
