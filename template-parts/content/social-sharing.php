@@ -7,6 +7,7 @@ $image_raw = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
 $image_encoded = rawurlencode( $image_raw );
 $title_raw = get_the_title();
 $title_encoded = rawurlencode( $title_raw );
+$viber_protocols = array_merge( wp_allowed_protocols(), array( 'viber' ) );
 
 $facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $url_encoded;
 $x_url = 'https://twitter.com/intent/tweet?url=' . $url_encoded;
@@ -36,7 +37,7 @@ if ( post_type_exists( 'product' ) && is_product() ) {
 	<a rel="noopener noreferrer nofollow" target="_blank" href="<?php echo esc_url( $whatsapp_url ); ?>" title="Share via WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 	<a rel="noopener noreferrer nofollow" target="_blank" href="<?php echo esc_url( $telegram_url ); ?>" title="Share via Telegram"><i class="fa-brands fa-telegram"></i></a>
 	<a rel="noopener noreferrer nofollow" target="_blank" href="<?php echo esc_url( $line_url ); ?>" title="Share via LINE"><i class="fa-brands fa-line"></i></a>
-	<a rel="noopener noreferrer nofollow" target="_blank" href="<?php echo esc_url( $viber_url ); ?>" title="Share via Viber"><i class="fa-brands fa-viber"></i></a>
+	<a rel="noopener noreferrer nofollow" target="_blank" href="<?php echo esc_url( $viber_url, $viber_protocols ); ?>" title="Share via Viber"><i class="fa-brands fa-viber"></i></a>
 	<div class="clear"></div>
 </div><!-- social-sharing -->
 
