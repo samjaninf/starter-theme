@@ -5,7 +5,7 @@ function hovercraft_offcanvas_menu() {
         'offcanvas_menu', // unique name 
         get_template_directory_uri().'/assets/js/offcanvas-menu.js', // location
         array('jquery'), // dependencies
-        '', 
+        HOVERCRAFT_VERSION,
         true
     );
 }
