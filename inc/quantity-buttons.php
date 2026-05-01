@@ -7,12 +7,15 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 // enqueue quantity buttons script in footer with cache busting
 add_action( 'wp_enqueue_scripts', function () {
 
+    $script_path = get_template_directory() . '/assets/js/quantity-buttons.js';
+    $script_version = file_exists( $script_path ) ? filemtime( $script_path ) : HOVERCRAFT_VERSION;
+
     // enqueue the quantity buttons js file
     wp_enqueue_script(
         'hovercraft-quantity-buttons',
         get_template_directory_uri() . '/assets/js/quantity-buttons.js',
         array(),
-        filemtime( get_template_directory() . '/assets/js/quantity-buttons.js' ),
+        $script_version,
         true
     );
 
