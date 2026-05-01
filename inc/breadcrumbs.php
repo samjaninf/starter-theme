@@ -34,6 +34,10 @@ function ah_breadcrumb_item( $url, $name, $position, $is_current = false ) {
         ah_breadcrumb_separator();
     }
 
+    if ( is_wp_error( $url ) ) {
+        $url = '';
+    }
+
     $class = $is_current ? 'item-current item' : 'item';
 
     echo '<li class="' . esc_attr( $class ) . '" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
@@ -144,11 +148,13 @@ function ah_breadcrumb_woocommerce() {
 
     if ( is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
         $term = get_queried_object();
-        if ( $term && isset( $term->term_id, $term->taxonomy ) ) {
+        if ( $term && isset( $term->term_id, $term->taxonomy, $term->name ) ) {
             $ancestors = array_reverse( get_ancestors( $term->term_id, $term->taxonomy ) );
             foreach ( $ancestors as $ancestor_id ) {
                 $ancestor = get_term( $ancestor_id, $term->taxonomy );
-                ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+                if ( $ancestor && ! is_wp_error( $ancestor ) && isset( $ancestor->name ) ) {
+                    ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+                }
             }
             ah_breadcrumb_item( '', $term->name, $pos++, true );
         }
@@ -159,7 +165,9 @@ function ah_breadcrumb_woocommerce() {
             $ancestors = array_reverse( get_ancestors( $primary->term_id, 'product_cat' ) );
             foreach ( $ancestors as $ancestor_id ) {
                 $ancestor = get_term( $ancestor_id, 'product_cat' );
-                ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+                if ( $ancestor && ! is_wp_error( $ancestor ) && isset( $ancestor->name ) ) {
+                    ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+                }
             }
             ah_breadcrumb_item( get_term_link( $primary ), $primary->name, $pos++ );
         }
@@ -173,7 +181,7 @@ function ah_breadcrumb_cpt_fallback( $post_type ) {
         // add more custom types here
     );
 
-    return $fallback[ $post_type ] ?? false;
+    return isset( $fallback[ $post_type ] ) ? $fallback[ $post_type ] : false;
 }
 
 function ah_breadcrumb_home_blog() {
@@ -204,7 +212,7 @@ function ah_breadcrumb_single() {
             }
         }
 
-        if ( is_post_type_hierarchical( $post_type ) ) {
+        if ( isset( $post ) && is_object( $post ) && is_post_type_hierarchical( $post_type ) ) {
             $ancestors = array_reverse( get_post_ancestors( $post->ID ) );
             foreach ( $ancestors as $ancestor_id ) {
                 ah_breadcrumb_item( get_permalink( $ancestor_id ), get_the_title( $ancestor_id ), $pos++ );
@@ -212,7 +220,7 @@ function ah_breadcrumb_single() {
         }
     }
 
-    if ( $post_type === 'post' ) {
+    if ( $post_type === 'post' && isset( $post ) && is_object( $post ) ) {
         $cats = get_the_category( $post->ID );
         if ( $cats ) {
             $cat = end( $cats );
@@ -232,24 +240,32 @@ function ah_breadcrumb_archive() {
 
     if ( is_category() ) {
         $cat = get_queried_object();
-        if ( $cat->category_parent ) {
-            $parent = get_category( $cat->category_parent );
-            ah_breadcrumb_item( get_category_link( $parent ), $parent->name, $pos++ );
+        if ( $cat && isset( $cat->category_parent, $cat->name ) ) {
+            if ( $cat->category_parent ) {
+                $parent = get_category( $cat->category_parent );
+                if ( $parent && ! is_wp_error( $parent ) && isset( $parent->name ) ) {
+                    ah_breadcrumb_item( get_category_link( $parent ), $parent->name, $pos++ );
+                }
+            }
+            ah_breadcrumb_item( '', single_cat_title( '', false ), $pos++, true );
         }
-        ah_breadcrumb_item( '', single_cat_title( '', false ), $pos++, true );
 
     } elseif ( is_tag() ) {
         ah_breadcrumb_item( '', single_tag_title( '', false ), $pos++, true );
 
     } elseif ( is_tax() ) {
         $term = get_queried_object();
-        $ancestors = get_ancestors( $term->term_id, $term->taxonomy );
-        $ancestors = array_reverse( $ancestors );
-        foreach ( $ancestors as $ancestor_id ) {
-            $ancestor = get_term( $ancestor_id, $term->taxonomy );
-            ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+        if ( $term && isset( $term->term_id, $term->taxonomy, $term->name ) ) {
+            $ancestors = get_ancestors( $term->term_id, $term->taxonomy );
+            $ancestors = array_reverse( $ancestors );
+            foreach ( $ancestors as $ancestor_id ) {
+                $ancestor = get_term( $ancestor_id, $term->taxonomy );
+                if ( $ancestor && ! is_wp_error( $ancestor ) && isset( $ancestor->name ) ) {
+                    ah_breadcrumb_item( get_term_link( $ancestor ), $ancestor->name, $pos++ );
+                }
+            }
+            ah_breadcrumb_item( '', $term->name, $pos++, true );
         }
-        ah_breadcrumb_item( '', $term->name, $pos++, true );
 
     } elseif ( is_author() ) {
         $author = get_userdata( get_query_var( 'author' ) );
