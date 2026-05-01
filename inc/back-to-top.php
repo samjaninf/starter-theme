@@ -5,7 +5,7 @@ function hovercraft_back_to_top() {
         'hovercraft_back_to_top', // unique name 
         get_template_directory_uri().'/assets/js/back-to-top.js', // location
         array('jquery'), // dependencies
-        '', 
+        HOVERCRAFT_VERSION,
         true
     );
 }
