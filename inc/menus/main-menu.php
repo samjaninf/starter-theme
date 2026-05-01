@@ -5,7 +5,7 @@ function hovercraft_main_menu() {
 		'hovercraft_main_menu',
 		get_template_directory_uri() . '/assets/js/main-menu.js',
 		array('jquery'),
-		'',
+		HOVERCRAFT_VERSION,
 		true
 	);
 }
