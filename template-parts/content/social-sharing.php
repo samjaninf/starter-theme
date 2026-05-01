@@ -1,11 +1,18 @@
 <?php
 
+// hide sharing on product pages
+// make this conditional later based on Customizer settings
+if ( function_exists( 'is_product' ) && is_product() ) {
+	return;
+}
+
 // set sharing variables
 $url_raw = get_permalink();
-$url_encoded = rawurlencode( $url_raw );
 $image_raw = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
-$image_encoded = rawurlencode( $image_raw );
 $title_raw = get_the_title();
+
+$url_encoded = rawurlencode( $url_raw );
+$image_encoded = $image_raw ? rawurlencode( $image_raw ) : '';
 $title_encoded = rawurlencode( $title_raw );
 $viber_protocols = array_merge( wp_allowed_protocols(), array( 'viber' ) );
 
@@ -18,12 +25,6 @@ $whatsapp_url = 'https://wa.me/?text=' . $url_encoded;
 $telegram_url = 'https://t.me/share/url?url=' . $url_encoded;
 $line_url = 'https://line.me/R/share?text=' . $url_encoded;
 $viber_url = 'viber://forward?text=' . $url_encoded;
-
-// hide sharing on product pages
-// make this conditional later based on Customizer settings
-if ( post_type_exists( 'product' ) && is_product() ) {
-	return;
-}
 
 ?>
 
