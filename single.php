@@ -13,7 +13,7 @@
 		if ( $hovercraft_sidebar_appears === 'everywhere' || $hovercraft_sidebar_appears === 'posts_only' ) { ?><div id="primary"><?php } 
 		elseif ( $hovercraft_sidebar_appears === 'none' ) {
 			if ( $hovercraft_primary_width === 'narrow_centered' ) { ?><div id="primary-center"><?php } 
-			eelseif ( $hovercraft_primary_width === 'wide' ) { ?><div id="primary-wide"><?php } 
+			elseif ( $hovercraft_primary_width === 'wide' ) { ?><div id="primary-wide"><?php } 
 		} ?>
 		
 		<div id="content-wrapper">
@@ -100,8 +100,7 @@
 		
     	<div class="clear"></div>
 	</div><!-- inner -->
-	</div><!-- main -->
-	
+	</div><!-- main -->	
 </div><!-- post -->
 
 <?php get_template_part( 'footer' ); ?>
