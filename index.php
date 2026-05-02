@@ -65,7 +65,7 @@
 				if ( $hovercraft_primary_width === 'wide' ) { get_template_part( 'template-parts/content/featured-image-archive-large' ); } 
 				else { get_template_part( 'template-parts/content/featured-image-archive' ); } ?>
 				
-				<h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+				<h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 
 				<?php get_template_part( 'template-parts/content/byline-archive' ); ?>
 		
@@ -77,7 +77,7 @@
 					
 				} else { ?>
 				
-				<h1><?php the_archive_title(); ?></h1>
+				<h1><?php echo esc_html( get_the_archive_title() ); ?></h1>
 				
 				<div class="category-description"><?php echo wp_kses_post( category_description() ); ?></div> 
 				
@@ -91,7 +91,7 @@
 				if ( $hovercraft_primary_width === 'wide' ) { get_template_part( 'template-parts/content/featured-image-archive-large' ); } 
 				else { get_template_part( 'template-parts/content/featured-image-archive' ); } ?>
 				
-				<h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+				<h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
 
 				<?php get_template_part( 'template-parts/content/byline-archive' ); ?>
 		
