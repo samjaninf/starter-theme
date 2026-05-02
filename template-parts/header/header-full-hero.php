@@ -1,10 +1,11 @@
 <div id="hero-full-container">
 
 <?php 
+	$url_header_image = get_header_image();
 	$url_hovercraft_video = wp_get_attachment_url(get_theme_mod('hovercraft_video'));
 	if (!empty($url_hovercraft_video)){ echo 
-		'<video class="hero-background-video" playsinline autoplay muted loop poster="'.$url_header_image.'">
-    	<source src="'.$url_hovercraft_video.'" type="video/mp4">
+		'<video class="hero-background-video" playsinline autoplay muted loop poster="' . esc_url( $url_header_image ) . '">
+    	<source src="' . esc_url( $url_hovercraft_video ) . '" type="video/mp4">
     	Your browser does not support the video tag.</video><div class="hero-background-video-overlay"></div>';
 	} ?>
 
