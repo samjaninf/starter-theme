@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'HOVERCRAFT_VERSION' ) ) {
-	define( 'HOVERCRAFT_VERSION', '0.3.13' );
+	define( 'HOVERCRAFT_VERSION', '0.3.14' );
 }
 
 // disable wordpress.org updates for this theme
