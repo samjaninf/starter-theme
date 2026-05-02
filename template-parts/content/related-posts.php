@@ -16,7 +16,7 @@ $my_query = new wp_query( $args );
 if( $my_query->have_posts() ) { ?>
     <div id="related">
         <h4><?php _e( 'Related Posts: ', 'hovercraft' ); ?></h4>
-        <ul><?php while( $my_query->have_posts() ) { $my_query->the_post(); ?><li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li><?php } wp_reset_postdata(); ?></ul>
+        <ul><?php while( $my_query->have_posts() ) { $my_query->the_post(); ?><li><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></li><?php } wp_reset_postdata(); ?></ul>
     </div><!-- related -->
 <?php }
 
