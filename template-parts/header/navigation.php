@@ -18,10 +18,10 @@
 				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-search"></i><?php } ?></div><!-- search-icon-wrapper -->
 			<?php } ?>
 			
-			<?php if ( class_exists( 'WooCommerce' ) ) { ?>
-				<a href="/cart/"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+			<?php if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart ) { ?>
+				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
 				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons shopping_cart">shopping_cart</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo WC()->cart->get_cart_contents_count(); ?></div><!-- notification-dot -->
+				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div><!-- notification-dot -->
 			<?php } ?>
 			
 	 		<?php $hovercraft_mobile_menu = get_theme_mod( 'hovercraft_mobile_menu', 'accordion' );
@@ -56,10 +56,10 @@
 				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-search"></i><?php } ?></div><!-- search-icon-wrapper -->
 			<?php } ?>
 			
-			<?php if ( class_exists( 'WooCommerce' ) ) { ?>
-				<div class="cart-icon-wrapper"><a href="/cart/"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+			<?php if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart ) { ?>
+				<div class="cart-icon-wrapper"><a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
 				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons shopping_cart">shopping_cart</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo WC()->cart->get_cart_contents_count(); ?></div></div><!-- cart-icon-wrapper -->
+				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div></div><!-- cart-icon-wrapper -->
 			<?php } ?>
 			
 			<?php
