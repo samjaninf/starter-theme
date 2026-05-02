@@ -45,7 +45,7 @@
                                                 } else {
                                                     $hovercraft_faq_character_count = get_theme_mod('hovercraft_faq_character_count', '300');
                                                     $content = get_the_content();
-                                                    echo '<p>' . wp_trim_words($content, $hovercraft_faq_character_count, '...') . '</p>'; // Trim content for display
+                                                    echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_character_count, '...') ) . '</p>'; // Trim content for display
                                                 } ?>
                                             </div><!-- faq-item -->
                                         <?php endwhile; ?>
@@ -53,7 +53,7 @@
                                     <?php wp_reset_postdata(); ?>
                                     <?php $faqs_displayed = true; // Set flag to true if any FAQs were displayed ?>
                                 <?php else : ?>
-                                    <p><?php _e('No posts', 'textdomain'); ?></p>
+                                    <p><?php esc_html_e('No posts', 'hovercraft'); ?></p>
                                 <?php endif; ?>
                             <?php endforeach; // End of subcategory loop ?>
                         <?php endif; ?>
@@ -76,7 +76,7 @@
 
                         // If there are FAQs without subcategories, display them
                         if ($the_query->have_posts()) : ?>
-                            <h3><?php _e('General', 'textdomain'); ?></h3>
+                            <h3><?php esc_html_e('General', 'hovercraft'); ?></h3>
                             <div class="faq-item-list">
                                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                                     <div class="faq-item">
@@ -94,7 +94,7 @@
                                         } else {
                                             $hovercraft_faq_character_count = get_theme_mod('hovercraft_faq_character_count', '300');
                                             $content = get_the_content();
-                                            echo '<p>' . wp_trim_words($content, $hovercraft_faq_character_count, '...') . '</p>'; // Trim content for display
+                                            echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_character_count, '...') ) . '</p>'; // Trim content for display
                                         } ?>
                                     </div><!-- faq-item -->
                                 <?php endwhile; ?>
@@ -102,7 +102,7 @@
                             <?php wp_reset_postdata(); ?>
                             <?php $faqs_displayed = true; // Set flag to true if any FAQs were displayed ?>
                         <?php else : ?>
-                            <p><?php _e('No FAQs available', 'textdomain'); ?></p>
+                            <p><?php esc_html_e('No FAQs available', 'hovercraft'); ?></p>
                         <?php endif; ?>
 
                         <div class="clear"></div>
