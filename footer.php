@@ -118,8 +118,6 @@ if ( $hovercraft_copyright_width === 'full' ) {
 </div><!-- container -->
 
 <div id="full-screen-search">
-	<button type="button" class="close"><i class="material-icons close">close</i></button>
-
 	<?php
 	$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
 	if ( $hovercraft_layout_icons === 'material_icons_classic' ) {
