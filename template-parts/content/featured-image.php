@@ -2,8 +2,13 @@
 // get current post id safely outside the loop
 $post_id = get_queried_object_id();
 
+$is_woocommerce = function_exists( 'is_woocommerce' ) && is_woocommerce();
+$is_shop = function_exists( 'is_shop' ) && is_shop();
+$is_product_taxonomy = function_exists( 'is_product_taxonomy' ) && is_product_taxonomy();
+$is_product = is_singular( 'product' );
+
 // skip featured image anywhere in woocommerce
-if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_shop() || is_product_taxonomy() || is_singular( 'product' ) ) ) {
+if ( $is_woocommerce || $is_shop || $is_product_taxonomy || $is_product ) {
     return;
 }
 
