@@ -41,13 +41,15 @@
 		<div class="inner">
 
 			<?php
-			if ( get_theme_mod( 'hovercraft_footer_columns' ) === 'four_equal' ) {
+			$hovercraft_footer_columns = get_theme_mod( 'hovercraft_footer_columns', 'four_weighted' );
+
+			if ( $hovercraft_footer_columns === 'four_equal' ) {
 				get_template_part( 'template-parts/footer/footer-four-columns-equal' );
-			} elseif ( get_theme_mod( 'hovercraft_footer_columns' ) === 'four_weighted' ) {
+			} elseif ( $hovercraft_footer_columns === 'four_weighted' ) {
 				get_template_part( 'template-parts/footer/footer-four-columns-unequal' );
-			} elseif ( get_theme_mod( 'hovercraft_footer_columns' ) === 'three_equal' ) {
+			} elseif ( $hovercraft_footer_columns === 'three_equal' ) {
 				get_template_part( 'template-parts/footer/footer-three-columns-equal' );
-			} elseif ( get_theme_mod( 'hovercraft_footer_columns' ) === 'three_weighted' ) {
+			} elseif ( $hovercraft_footer_columns === 'three_weighted' ) {
 				get_template_part( 'template-parts/footer/footer-three-columns-unequal' );
 			} else {
 				get_template_part( 'template-parts/footer/footer-four-columns-unequal' );
@@ -75,7 +77,7 @@ if ( $hovercraft_copyright_width === 'full' ) {
 	<div class="inner">
 
 		<div class="copyright-left">
-			&copy; <?php echo date( 'Y' ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>.
+			&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>.
 			<?php
 			$license_key = get_theme_mod( 'hovercraft_license_key' );
 			if ( empty( $license_key ) || ( function_exists( 'hovercraft_validate_license_key' ) && ! hovercraft_validate_license_key( $license_key ) ) ) {
