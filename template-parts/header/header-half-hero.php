@@ -53,10 +53,10 @@
     	<?php 
         $hide_title_status = get_post_meta( get_the_ID(), '_mysite_meta_hide_title', true);
         $post_id = get_the_ID();
-        if($hide_title_status == "off" || !metadata_exists( 'post', $post_id, '_mysite_meta_hide_title' ) ) :
+        if($hide_title_status === "off" || !metadata_exists( 'post', $post_id, '_mysite_meta_hide_title' ) ) :
     	?>
 		<h1 class="half-hero-title <?php $h1_divider_display = get_theme_mod( 'hovercraft_h1_divider_display', 'none' );
-			if ( $h1_divider_display == 'everywhere_possible' ) { echo "divide"; } ?>"><?php single_post_title(); ?></h1>
+			if ( $h1_divider_display === 'everywhere_possible' ) { echo esc_attr( 'divide' ); } ?>"><?php echo esc_html( single_post_title( '', false ) ); ?></h1>
 		<?php endif; ?> <!--End the hide title-->
 			
 		<?php if (is_front_page()) : ?>
