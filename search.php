@@ -18,7 +18,7 @@
             
             <div id="content-padded">
         
-                <h1><?php _e( 'Search results for:', 'hovercraft' ); ?>&nbsp;<span class="search-query"><?php echo get_search_query(); ?></span></h1>
+                <h1><?php esc_html_e( 'Search results for:', 'hovercraft' ); ?>&nbsp;<span class="search-query"><?php echo esc_html( get_search_query() ); ?></span></h1>
                 
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
