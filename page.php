@@ -2,17 +2,17 @@
 <?php get_template_part( 'template-parts/header/header-basic' ); ?>
 
 <?php
-$hide_main = get_theme_mod( 'hovercraft_homepage_hide_main' ) ? true : false;
+$hide_main = (bool) get_theme_mod( 'hovercraft_homepage_hide_main' );
 
-if ( ! is_front_page() || ( is_front_page() && $hide_main !== true ) ) {
+if ( ! is_front_page() || ! $hide_main ) {
     ?>
     <div id="main">
         <div class="inner">
 
             <?php
-            $show_sidebar = get_theme_mod( 'hovercraft_sidebar_status' ) ? true : false;
+            $show_sidebar = (bool) get_theme_mod( 'hovercraft_sidebar_status' );
 
-            if ( $show_sidebar === true ) {
+            if ( $show_sidebar ) {
                 ?>
                 <div id="primary">
                 <?php
@@ -42,7 +42,7 @@ if ( ! is_front_page() || ( is_front_page() && $hide_main !== true ) ) {
                 </div><!-- primary / primary-wide -->
 
             <?php
-            if ( $show_sidebar === true ) {
+            if ( $show_sidebar ) {
                 get_template_part( 'sidebar' );
             }
             ?>
