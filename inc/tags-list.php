@@ -7,7 +7,7 @@ function wpdocs_show_tags() {
 
     if ( ! empty( $post_tags ) ) {
         foreach ( $post_tags as $tag ) {
-            $output .= '<a rel="nofollow" href="' . esc_attr( get_tag_link( $tag->term_id ) ) . '">' . __( $tag->name ) . '</a>' . $separator;
+            $output .= '<a rel="nofollow" href="' . esc_url( get_tag_link( $tag->term_id ) ) . '">' . esc_html( $tag->name ) . '</a>' . $separator;
         }
     }
 
