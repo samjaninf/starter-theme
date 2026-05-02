@@ -16,5 +16,5 @@ $image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 $image_width = $url_featured_image[1];
 $image_height = $url_featured_image[2];
 ?>
-<a href="<?php the_permalink(); ?>"><img width="<?php echo esc_attr( $image_width ); ?>" height="<?php echo esc_attr( $image_height ); ?>" class="featured-image-archive" src="<?php echo esc_url( $url_featured_image[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" /></a>
+<a href="<?php echo esc_url( get_permalink() ); ?>"><img width="<?php echo esc_attr( $image_width ); ?>" height="<?php echo esc_attr( $image_height ); ?>" class="featured-image-archive" src="<?php echo esc_url( $url_featured_image[0] ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" /></a>
 <div class="clear"></div>
