@@ -12,7 +12,7 @@
 					<img class="featured-image" src="<?php echo esc_url( $url_featured_image ); ?>" />
 					<?php } ?>
 					<?php if ( get_post_type() === 'post' ) { 
-						the_time(get_option('date_format')); 
+						echo esc_html( get_the_time( get_option( 'date_format' ) ) ); 
 					} ?>
 				<?php } ?>
 		<?php } ?><!-- singular -->
