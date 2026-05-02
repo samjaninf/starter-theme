@@ -6,7 +6,7 @@
     
         <?php 
         $hovercraft_sidebar_status_checked = get_theme_mod( 'hovercraft_sidebar_status' ) ? true : false;
-        if ( $hovercraft_sidebar_status_checked == true ) { ?>
+        if ( $hovercraft_sidebar_status_checked ) { ?>
             <div id="primary">
         <?php } else { ?>
             <div id="primary-wide">
@@ -24,7 +24,7 @@
 
                     <div class="post-tease-archive">
                         <?php get_template_part( 'template-parts/content/featured-image-archive' ); ?>
-                        <h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h4>
+                        <h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
                         <div class="post-excerpt-archive"><?php the_excerpt(); ?></div>
                     </div><!-- post-tease-archive -->
 
@@ -41,7 +41,7 @@
     </div><!-- primary -->
 
     <?php 
-    if ( get_theme_mod( 'hovercraft_sidebar_status' ) == 1 ) { 
+    if ( get_theme_mod( 'hovercraft_sidebar_status' ) === 1 ) { 
         get_template_part( 'sidebar' ); 
     } ?>
     
