@@ -8,13 +8,13 @@ if ( ( $hovercraft_biography == 'native_posts_only' ) || ( $hovercraft_biography
 		if ( get_post_type() === 'post' ) { ?>
 
         <div id="author">
-			<h5 class="author-biography-intro"><?php _e( 'About the Author', 'hovercraft' ); ?></h5>
+			<h5 class="author-biography-intro"><?php esc_html_e( 'About the Author', 'hovercraft' ); ?></h5>
 			<?php $hovercraft_byline_photo = get_theme_mod( 'hovercraft_byline_photo', 'none' );
 				if ( ($hovercraft_byline_photo == 'biography_only') || ($hovercraft_byline_photo == 'byline_and_biography') ) { ?>
 					<div class="biography-photo"><?php if (get_the_author_meta('user_email')) { echo get_avatar(get_the_author_meta('user_email'), '150'); } ?></div>
 				<?php } ?>
-            <h3 class="biography-name"><?php the_author_meta('display_name'); ?></h3>
-            	<p class="biography-description"><?php echo nl2br( get_the_author_meta('description') ); ?></p>
+            <h3 class="biography-name"><?php echo esc_html( get_the_author_meta('display_name') ); ?></h3>
+            	<p class="biography-description"><?php echo nl2br( esc_html( get_the_author_meta('description') ) ); ?></p>
 			<div class="clear"></div>
         </div><!-- author -->
 
@@ -25,13 +25,13 @@ if ( ( $hovercraft_biography == 'native_posts_only' ) || ( $hovercraft_biography
 		if ( ( is_custom_post_type() ) || ( get_post_type() === 'post' ) ) { ?>
 
 		<div id="author">
-			<h5 class="author-biography-intro"><?php _e( 'About the Author', 'hovercraft' ); ?></h5>
+			<h5 class="author-biography-intro"><?php esc_html_e( 'About the Author', 'hovercraft' ); ?></h5>
 			<?php $hovercraft_byline_photo = get_theme_mod( 'hovercraft_byline_photo', 'none' );
 				if ( ($hovercraft_byline_photo == 'biography_only') || ($hovercraft_byline_photo == 'byline_and_biography') ) { ?>
 					<div class="biography-photo"><?php if (get_the_author_meta('user_email')) { echo get_avatar(get_the_author_meta('user_email'), '150'); } ?></div>
 				<?php } ?>
-            <h3 class="biography-name"><?php the_author_meta('display_name'); ?></h3>
-            	<p class="biography-description"><?php echo nl2br( get_the_author_meta('description') ); ?></p>
+            <h3 class="biography-name"><?php echo esc_html( get_the_author_meta('display_name') ); ?></h3>
+            	<p class="biography-description"><?php echo nl2br( esc_html( get_the_author_meta('description') ) ); ?></p>
 			<div class="clear"></div>
         </div><!-- author -->
 
