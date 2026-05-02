@@ -10,11 +10,13 @@
 				
 			<div id="content-wide">
 				<?php get_template_part( 'template-parts/misc/breadcrumbs' ); ?>
-				<h1><?php $forum_page = get_page_by_path( 'forum' ); echo get_the_title( $forum_page ); ?></h1>
+				<?php $forum_page = get_page_by_path( 'forum' ); ?>
+				<h1><?php echo esc_html( $forum_page instanceof WP_Post ? get_the_title( $forum_page ) : __( 'Forum', 'hovercraft' ) ); ?></h1>
 			                
-				<?php $forum_page = get_page_by_path( 'forum' );
-				$forum_page_content = apply_filters('the_content', $forum_page->post_content);
-				echo $forum_page_content; ?>	
+				<?php if ( $forum_page instanceof WP_Post ) {
+					$forum_page_content = apply_filters( 'the_content', $forum_page->post_content );
+					echo $forum_page_content;
+				} ?>	
 				
 				<?php get_template_part( 'template-parts/content/pagination' ); ?>
 			
