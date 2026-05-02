@@ -49,13 +49,13 @@
 		<h1 class="mini-hero-title <?php
 			$h1_divider_display = get_theme_mod( 'hovercraft_h1_divider_display', 'none' );
 			if ( $h1_divider_display === 'everywhere_possible' ) {
-				echo 'divide';
+				echo esc_attr( 'divide' );
 			}
 		?>"><?php
 			if ( is_singular() ) {
-				single_post_title();
+				echo esc_html( single_post_title( '', false ) );
 			} elseif ( is_category() ) {
-				single_cat_title();
+				echo esc_html( single_cat_title( '', false ) );
 			}
 		?></h1>
 		<?php endif; ?>
@@ -70,7 +70,7 @@
 			<div class="input-container">
 				<input type="search" class="search-input" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" placeholder="<?php
 					$cattitle = single_cat_title( '', false );
-					echo 'Search ' . strtolower( $cattitle ) . '...';
+					echo esc_attr( 'Search ' . strtolower( $cattitle ) . '...' );
 				?>" />
 				<button type="submit" class="search-submit" name="submit"><?php
 					$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
