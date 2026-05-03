@@ -1,6 +1,6 @@
 <?php
 
-function wpdocs_show_tags() {
+function hovercraft_show_tags() {
     $post_tags = get_the_tags();
     $separator = ', ';
     $output = '';
