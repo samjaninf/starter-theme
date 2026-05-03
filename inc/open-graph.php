@@ -16,6 +16,9 @@ function hovercraft_open_graph_meta() {
         return;
     }
 
+    // output og:type
+    echo '<meta property="og:type" content="article">' . "\n";
+
     // output og:title and twitter:title
     $title = get_the_title( $post_id );
     if ( $title ) {
