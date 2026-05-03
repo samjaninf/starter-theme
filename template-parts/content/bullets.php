@@ -43,9 +43,14 @@
                                                 if ($hovercraft_bullets_html_content === 'include_html') {
                                                     the_content(); // Output full content if enabled
                                                 } else {
-                                                    $hovercraft_faq_character_count = get_theme_mod('hovercraft_faq_character_count', '300');
+                                                    $hovercraft_faq_word_count = absint( get_theme_mod('hovercraft_faq_character_count', '300') );
+
+                                                    if ( ! $hovercraft_faq_word_count ) {
+                                                        $hovercraft_faq_word_count = 300;
+                                                    }
+
                                                     $content = get_the_content();
-                                                    echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_character_count, '...') ) . '</p>'; // Trim content for display
+                                                    echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_word_count, '...') ) . '</p>'; // Trim content for display
                                                 } ?>
                                             </div><!-- faq-item -->
                                         <?php endwhile; ?>
@@ -92,9 +97,14 @@
                                         if ($hovercraft_bullets_html_content === 'include_html') {
                                             the_content(); // Output full content if enabled
                                         } else {
-                                            $hovercraft_faq_character_count = get_theme_mod('hovercraft_faq_character_count', '300');
+                                            $hovercraft_faq_word_count = absint( get_theme_mod('hovercraft_faq_character_count', '300') );
+
+                                            if ( ! $hovercraft_faq_word_count ) {
+                                                $hovercraft_faq_word_count = 300;
+                                            }
+
                                             $content = get_the_content();
-                                            echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_character_count, '...') ) . '</p>'; // Trim content for display
+                                            echo '<p>' . esc_html( wp_trim_words($content, $hovercraft_faq_word_count, '...') ) . '</p>'; // Trim content for display
                                         } ?>
                                     </div><!-- faq-item -->
                                 <?php endwhile; ?>
