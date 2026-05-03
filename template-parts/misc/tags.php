@@ -14,14 +14,14 @@ elseif ( $hovercraft_post_tags == 'native_posts_and_pages' ) {
 }
 elseif ( $hovercraft_post_tags == 'native_posts_and_custom_posts' ) {
     if ( is_single() ) {
-        if ( 'post' == get_post_type() || is_custom_post_type() ) { ?>
+        if ( 'post' == get_post_type() || hovercraft_is_custom_post_type() ) { ?>
             <div class="tags"><span><?php esc_html_e( 'Tags: ', 'hovercraft' ); echo wpdocs_show_tags(); ?></span></div><!-- tags -->
         <?php }
     }
 }
 elseif ( $hovercraft_post_tags == 'native_posts_and_pages_and_custom_posts' ) {   
     if ( is_single() ) {
-        if ( 'post' == get_post_type() || is_page() || is_custom_post_type() ) { ?>
+        if ( 'post' == get_post_type() || is_page() || hovercraft_is_custom_post_type() ) { ?>
             <div class="tags"><span><?php esc_html_e( 'Tags: ', 'hovercraft' ); echo wpdocs_show_tags(); ?></span></div><!-- tags -->
         <?php }
     }
