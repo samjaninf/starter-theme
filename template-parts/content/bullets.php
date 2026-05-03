@@ -118,7 +118,7 @@
                             </div><!-- faq-item-list -->
                             <?php wp_reset_postdata(); ?>
                             <?php $faqs_displayed = true; // Set flag to true if any FAQs were displayed ?>
-                        <?php else : ?>
+                        <?php elseif ( ! $faqs_displayed ) : ?>
                             <p><?php esc_html_e('No FAQs available', 'hovercraft'); ?></p>
                         <?php endif; ?>
 
