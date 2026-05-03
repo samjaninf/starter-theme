@@ -6,7 +6,7 @@ add_filter( 'comment_form_default_fields', 'hovercraft_comment_fields' );
 function hovercraft_comment_fields( $fields ) {
     $commenter  = wp_get_current_commenter();
     $req        = get_option( 'require_name_email' );
-    $aria_req   = $req ? " aria-required='true'" : '';
+    $aria_req   = $req ? " aria-required='true' required" : '';
     $required   = $req ? '<span class="required">*</span>' : '';
 
     $fields['author'] = sprintf(
