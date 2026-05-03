@@ -5,14 +5,11 @@
 
 function hovercraft_verify_media_sizes() {
     
-    $large_width = get_option( 'large_size_w' );
-	$large_height = get_option( 'large_size_h' );
-	$medium_width = get_option( 'medium_size_w' );
-	$medium_height = get_option( 'medium_size_h' );
-	$medium_large_width = get_option( 'medium_large_size_w' );
-	$medium_large_height = get_option( 'medium_large_size_h' );
+    $large_width = absint( get_option( 'large_size_w' ) );
+	$medium_width = absint( get_option( 'medium_size_w' ) );
+	$medium_large_width = absint( get_option( 'medium_large_size_w' ) );
 
-    if ( $large_width != '1200' || $medium_width != '480' || $medium_large_width != '768' ) { ?>
+    if ( 1200 !== $large_width || 480 !== $medium_width || 768 !== $medium_large_width ) { ?>
 
         <div class="notice notice-warning">
         <p><strong>Adjust Media Sizes</strong></p>
