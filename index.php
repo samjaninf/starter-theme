@@ -73,7 +73,9 @@
 				</div><!-- post-tease-archive -->
 						
 					<?php } // end while
-					} // end if
+					} else { ?>
+						<p><?php esc_html_e( 'No posts found.', 'hovercraft' ); ?></p>
+					<?php } // end if
 					
 				} else { ?>
 				
@@ -98,7 +100,9 @@
 				<div class="post-excerpt-archive"><?php the_excerpt(); ?></div>
 				</div><!-- post-tease-archive -->
 		
-				<?php endwhile; endif; ?><!-- the loop -->
+				<?php endwhile; else : ?>
+					<p><?php esc_html_e( 'No posts found.', 'hovercraft' ); ?></p>
+				<?php endif; ?><!-- the loop -->
 				
 				<?php } ?>
 					
