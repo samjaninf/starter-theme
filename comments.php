@@ -5,7 +5,7 @@ if ( post_password_required() ) {
 }
 
 // exit if comments are closed and none exist
-if ( ! comments_open() && ! $comments ) {
+if ( ! comments_open() && ! get_comments_number() ) {
     return;
 }
 ?>
@@ -18,7 +18,7 @@ if ( ! comments_open() && ! $comments ) {
             <?php
             // display comment count with post title
             comments_number(
-                esc_html__( 'No comments yet on', 'hovercraft' ),
+                esc_html__( 'Comments on', 'hovercraft' ),
                 esc_html__( 'One comment on', 'hovercraft' ),
                 esc_html__( '% comments on', 'hovercraft' )
             );
