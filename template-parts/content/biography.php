@@ -22,7 +22,7 @@ if ( ( $hovercraft_biography == 'native_posts_only' ) || ( $hovercraft_biography
 
 	} elseif ( $hovercraft_biography == 'all_post_types' ) { 
 
-		if ( ( is_custom_post_type() ) || ( get_post_type() === 'post' ) ) { ?>
+		if ( ( hovercraft_is_custom_post_type() ) || ( get_post_type() === 'post' ) ) { ?>
 
 		<div id="author">
 			<h5 class="author-biography-intro"><?php esc_html_e( 'About the Author', 'hovercraft' ); ?></h5>
