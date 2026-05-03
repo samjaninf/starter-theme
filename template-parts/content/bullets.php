@@ -65,19 +65,26 @@
 
                         <!-- Query for FAQs without subcategories -->
                         <?php
-                        $the_query = new WP_Query(array(
+                        $faq_query_args = array(
                             'category_name' => 'faq', // Fetch all posts in the 'faq' category
                             'post_status' => 'publish',
                             'posts_per_page' => 999,
-                            'tax_query' => array(
+                        );
+
+                        $faq_subcategory_ids = wp_list_pluck($faq_subcategories, 'term_id');
+
+                        if ( ! empty( $faq_subcategory_ids ) ) {
+                            $faq_query_args['tax_query'] = array(
                                 array(
                                     'taxonomy' => 'category',
                                     'field'    => 'term_id',
-                                    'terms'    => wp_list_pluck($faq_subcategories, 'term_id'), // Get subcategory IDs
+                                    'terms'    => $faq_subcategory_ids, // Get subcategory IDs
                                     'operator' => 'NOT IN', // Exclude subcategory posts
                                 ),
-                            ),
-                        ));
+                            );
+                        }
+
+                        $the_query = new WP_Query($faq_query_args);
 
                         // If there are FAQs without subcategories, display them
                         if ($the_query->have_posts()) : ?>
