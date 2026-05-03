@@ -114,6 +114,9 @@ require get_template_directory() . '/inc/remove-generator.php';
 // page excerpts
 add_post_type_support( 'page', 'excerpt' );
 
+// title tag
+add_theme_support( 'title-tag' );
+
 // rss feeds
 add_theme_support( 'automatic-feed-links' );
 
