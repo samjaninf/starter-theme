@@ -20,15 +20,23 @@
         
                 <h1><?php esc_html_e( 'Search results for:', 'hovercraft' ); ?>&nbsp;<span class="search-query"><?php echo esc_html( get_search_query() ); ?></span></h1>
                 
-                <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                <?php if ( have_posts() ) : ?>
 
-                    <div class="post-tease-archive">
-                        <?php get_template_part( 'template-parts/content/featured-image-archive' ); ?>
-                        <h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
-                        <div class="post-excerpt-archive"><?php the_excerpt(); ?></div>
-                    </div><!-- post-tease-archive -->
+                    <?php while ( have_posts() ) : the_post(); ?>
 
-                <?php endwhile; endif; ?><!-- the loop -->
+                        <div class="post-tease-archive">
+                            <?php get_template_part( 'template-parts/content/featured-image-archive' ); ?>
+                            <h4><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h4>
+                            <div class="post-excerpt-archive"><?php the_excerpt(); ?></div>
+                        </div><!-- post-tease-archive -->
+
+                    <?php endwhile; ?>
+
+                <?php else : ?>
+
+                    <p><?php esc_html_e( 'No results found.', 'hovercraft' ); ?></p>
+
+                <?php endif; ?><!-- the loop -->
                 
                 <?php get_template_part( 'template-parts/content/pagination' ); ?>
             
