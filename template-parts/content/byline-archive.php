@@ -20,14 +20,14 @@ $author_id = isset( $post ) && is_object( $post ) ? $post->post_author : 0;
 
     if ( $hovercraft_byline_date === 'published_date_only' ) { ?>
         <span class="byline-separator">|</span>
-        <span class="post-published"><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span>
+        <span class="post-published"><?php echo esc_html__( 'Published on', 'hovercraft' ) . ' ' . esc_html( get_the_date( 'M j, Y' ) ); ?></span>
     <?php } elseif ( $hovercraft_byline_date === 'updated_date_only' ) { ?>
         <span class="byline-separator">|</span>
-        <span class="post-updated"><?php echo esc_html( get_the_modified_time( 'M j, Y' ) ); ?></span>
+        <span class="post-updated"><?php echo esc_html__( 'Updated on', 'hovercraft' ) . ' ' . esc_html( get_the_modified_time( 'M j, Y' ) ); ?></span>
     <?php } elseif ( $hovercraft_byline_date === 'updated_and_published_dates' ) { ?>
         <span class="byline-separator">|</span>
-        <span class="post-published"><?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></span>
-        <span class="post-updated"><?php echo esc_html( get_the_modified_time( 'M j, Y' ) ); ?></span>
+        <span class="post-published"><?php echo esc_html__( 'Published on', 'hovercraft' ) . ' ' . esc_html( get_the_date( 'M j, Y' ) ); ?></span>
+        <span class="post-updated"><?php echo esc_html__( 'Updated on', 'hovercraft' ) . ' ' . esc_html( get_the_modified_time( 'M j, Y' ) ); ?></span>
     <?php } ?>
 </div><!-- post-byline-archive -->
 
