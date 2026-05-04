@@ -74,6 +74,9 @@ require_once get_template_directory() . '/inc/license.php';
 require get_template_directory() . '/inc/logo-alternative.php';
 require get_template_directory() . '/inc/logo-default.php';
 
+// main content
+require get_template_directory() . '/inc/main-content.php';
+
 // meta
 require get_template_directory() . '/inc/meta-box.php';
 require get_template_directory() . '/inc/open-graph.php';
