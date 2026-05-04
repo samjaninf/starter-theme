@@ -1,8 +1,24 @@
 <?php
 
+function hovercraft_is_title_hidden( $post_id = 0 ) {
+    $post_id = $post_id ? absint( $post_id ) : get_the_ID();
+
+    if ( empty( $post_id ) ) {
+        return false;
+    }
+
+    $hide_title_status = get_post_meta( $post_id, '_hovercraft_hide_title', true );
+
+    if ( '' === $hide_title_status ) {
+        $hide_title_status = get_post_meta( $post_id, '_mysite_meta_hide_title', true );
+    }
+
+    return 'on' === $hide_title_status;
+}
+
 function hovercraft_page_metabox() {
     add_meta_box(
-        'remove-title',
+        'hovercraft-hide-title',
         __( 'HoverCraft Theme', 'hovercraft' ),
         'hovercraft_hide_title_callback',
         'page',
@@ -21,7 +37,7 @@ function hovercraft_hide_title_callback( $post ) {
         $value = get_post_meta( $post->ID, '_mysite_meta_hide_title', true );
     }
     ?>
-    <label for="hide"><?php esc_html_e( 'Hide Page Title:', 'hovercraft' ); ?> </label><input type="checkbox" id="hide" name="hide" <?php checked( $value, 'on' ); ?>>
+    <label for="hovercraft-hide-title"><?php esc_html_e( 'Hide Page Title:', 'hovercraft' ); ?> </label><input type="checkbox" id="hovercraft-hide-title" name="hovercraft_hide_title" <?php checked( $value, 'on' ); ?>>
     <?php
 }
 
@@ -42,7 +58,7 @@ function hovercraft_save_postdata( $post_id ) {
         return;
     }
 
-    if ( isset( $_POST['hide'] ) ) {
+    if ( isset( $_POST['hovercraft_hide_title'] ) || isset( $_POST['hide'] ) ) {
         update_post_meta( $post_id, '_hovercraft_hide_title', 'on' );
         update_post_meta( $post_id, '_mysite_meta_hide_title', 'on' );
     } else {
