@@ -12,14 +12,14 @@ function hovercraft_admin_meta_ui_assets( $hook ) {
 	}
 
 	wp_enqueue_style(
-		'hovercraft-admin-meta-ui',
+		'hovercraft_admin_meta_ui',
 		get_template_directory_uri() . '/assets/css/admin-meta-collapse.css',
 		array(),
 		HOVERCRAFT_VERSION
 	);
 
 	wp_enqueue_script(
-		'hovercraft-admin-meta-ui',
+		'hovercraft_admin_meta_ui',
 		get_template_directory_uri() . '/assets/js/admin-meta-collapse.js',
 		array( 'jquery' ),
 		HOVERCRAFT_VERSION,
