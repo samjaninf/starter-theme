@@ -11,8 +11,7 @@
 	<?php endif; ?>
 
 
-<?php $hovercraft_homepage_hide_main_checked = get_theme_mod( 'hovercraft_homepage_hide_main' ) ? true : false;
-if ( !is_front_page() || ( is_front_page() && $hovercraft_homepage_hide_main_checked != true ) ) { ?>
+<?php if ( hovercraft_should_show_main_content() ) { ?>
 
 <div id="main">
 <div class="inner">
