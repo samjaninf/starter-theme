@@ -10,7 +10,7 @@ function hovercraft_button_shortcode( $atts, $content = null ) {
 			'style'  => 'primary',
 		),
 		$atts,
-		'button'
+		'hovercraft_button'
 	);
 
 	$allowed_targets = array( '_self', '_blank', '_parent', '_top' );
@@ -30,5 +30,6 @@ function hovercraft_button_shortcode( $atts, $content = null ) {
 	return '<a href="' . esc_url( $atts['url'] ) . '" target="' . esc_attr( $target ) . '" class="' . esc_attr( $class_attr ) . '"' . $rel_attr . '>' . $button_content . '</a>';
 }
 add_shortcode( 'button', 'hovercraft_button_shortcode' );
+add_shortcode( 'hovercraft_button', 'hovercraft_button_shortcode' );
 
 // Ref: ChatGPT
