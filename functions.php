@@ -30,6 +30,10 @@ require get_template_directory() . '/inc/bbpress-search-results.php';
 // breadcrumbs
 require get_template_directory() . '/inc/breadcrumbs.php';
 
+function hovercraft_breadcrumb() {
+    ah_breadcrumb();
+}
+
 // categories
 require get_template_directory() . '/inc/bullets-category.php';
 require get_template_directory() . '/inc/portal-category.php';
