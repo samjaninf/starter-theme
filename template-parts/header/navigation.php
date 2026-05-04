@@ -1,6 +1,16 @@
-<?php $hovercraft_desktop_header_width = get_theme_mod( 'hovercraft_desktop_header_width', 'fixed' );
-		if ( $hovercraft_desktop_header_width == 'fixed' ) { ?><div class="inner"><?php } else { ?><div class="full"><?php } ?>
-	
+<?php
+$hovercraft_desktop_header_width = get_theme_mod( 'hovercraft_desktop_header_width', 'fixed' );
+
+if ( 'fixed' === $hovercraft_desktop_header_width ) {
+	?>
+	<div class="inner">
+	<?php
+} else {
+	?>
+	<div class="full">
+	<?php
+}
+?>
 	<div class="header-left">
 		<?php get_template_part( 'template-parts/header/branding' ); ?>
 	</div><!-- header-left -->
@@ -9,80 +19,153 @@
 	<div class="menu-choose">
 		
 		<div class="menu-mobile-wrapper">
-			
-			<?php // https://inthedigital.co.uk/use-phps-in_array-to-compare-a-variable-to-multiple-values/
+			<?php
 			$search_icon_status = get_theme_mod( 'hovercraft_search_icon', 'desktop_only' );
-			if ( in_array( $search_icon_status, [ 'mobile_only', 'desktop_and_mobile' ] )) { ?>
-				<div class="search-icon-wrapper"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
-				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons search">search</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-search"></i><?php } ?></div><!-- search-icon-wrapper -->
-			<?php } ?>
+
+			if ( in_array( $search_icon_status, array( 'mobile_only', 'desktop_and_mobile' ), true ) ) {
+				?>
+				<div class="search-icon-wrapper">
+					<?php
+					$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+
+					if ( 'material_icons_classic' === $hovercraft_layout_icons ) {
+						?>
+						<i class="material-icons search">search</i>
+						<?php
+					} elseif ( 'font_awesome_version_6' === $hovercraft_layout_icons ) {
+						?>
+						<i class="fas fa-search"></i>
+						<?php
+					}
+					?>
+				</div><!-- search-icon-wrapper -->
+				<?php
+			}
+			?>
 			
 			<?php if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart ) { ?>
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
-				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons shopping_cart">shopping_cart</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div><!-- notification-dot -->
+				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+					<?php
+					$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+
+					if ( 'material_icons_classic' === $hovercraft_layout_icons ) {
+						?>
+						<i class="material-icons shopping_cart">shopping_cart</i>
+						<?php
+					} elseif ( 'font_awesome_version_6' === $hovercraft_layout_icons ) {
+						?>
+						<i class="fas fa-shopping-cart"></i>
+						<?php
+					}
+					?>
+				</a>
+				<div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div><!-- notification-dot -->
 			<?php } ?>
 			
-	 		<?php $hovercraft_mobile_menu = get_theme_mod( 'hovercraft_mobile_menu', 'accordion' );
-				if ( $hovercraft_mobile_menu == 'overlay' ) { ?><a class="nav-icon mobile-menu-trig" onclick="openNav()"><?php } else { ?>
-					<a class="nav-icon mobile-menu-trig burger"><?php } ?><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
-				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons menu">menu</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fa-solid fa-bars"></i><?php } ?></a>
+	 		<?php
+			$hovercraft_mobile_menu = get_theme_mod( 'hovercraft_mobile_menu', 'accordion' );
+
+			if ( 'overlay' === $hovercraft_mobile_menu ) {
+				?>
+				<a class="nav-icon mobile-menu-trig" onclick="openNav()">
+				<?php
+			} else {
+				?>
+				<a class="nav-icon mobile-menu-trig burger">
+				<?php
+			}
+
+			$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+
+			if ( 'material_icons_classic' === $hovercraft_layout_icons ) {
+				?>
+				<i class="material-icons menu">menu</i>
+				<?php
+			} elseif ( 'font_awesome_version_6' === $hovercraft_layout_icons ) {
+				?>
+				<i class="fa-solid fa-bars"></i>
+				<?php
+			}
+			?>
+			</a>
 			
 		</div><!--menu-mobile-wrapper -->
 		
 		<div class="menu-desktop">
-			<?php // wp_nav_menu( array( 'theme_location' => 'main-menu', 'container_class' => 'main-menu' ) ); ?>
-			<?php 
-        	if ( has_nav_menu( 'main-menu' ) ) {
-            wp_nav_menu(array(
-                'theme_location' => 'main-menu', 
-				'menu_class' => 'menu', 
-        		'container_class' => 'main-menu'
-                ));
-        	}else{
-            echo '<div class="main-menu"><ul class="menu">';
-            wp_list_pages( array( 'title_li' => '' ) );
-            echo '</ul></div>';
-        	}
-        	?>
-			
-			<?php // https://inthedigital.co.uk/use-phps-in_array-to-compare-a-variable-to-multiple-values/
-			$search_icon_status = get_theme_mod( 'hovercraft_search_icon', 'desktop_only' );
-			if ( in_array( $search_icon_status, [ 'desktop_only', 'desktop_and_mobile' ] )) { ?>
-				<div class="search-icon-wrapper"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
-				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons search">search</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-search"></i><?php } ?></div><!-- search-icon-wrapper -->
-			<?php } ?>
-			
-			<?php if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart ) { ?>
-				<div class="cart-icon-wrapper"><a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php $hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
-				if ( $hovercraft_layout_icons == 'material_icons_classic' ) { ?><i class="material-icons shopping_cart">shopping_cart</i><?php } 
-				elseif ( $hovercraft_layout_icons == 'font_awesome_version_6' ) { ?><i class="fas fa-shopping-cart"></i><?php } ?></a><div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div></div><!-- cart-icon-wrapper -->
-			<?php } ?>
-			
 			<?php
-			if ( has_nav_menu( 'cta-header-secondary' ) ) {
-    		// User has assigned menu to this location;
-    		// https://wordpress.stackexchange.com/questions/32739/wp-nav-menu-show-menu-only-if-one-exists-otherwise-show-nothing
-    		wp_nav_menu( array( 
-        	'theme_location' => 'cta-header-secondary', 
-        	'menu_class' => 'cta', 
-        	'container_class' => 'cta-header-secondary'
-    		) );
+			if ( has_nav_menu( 'main-menu' ) ) {
+				wp_nav_menu( array(
+					'theme_location'  => 'main-menu',
+					'menu_class'      => 'menu',
+					'container_class' => 'main-menu',
+				) );
+			} else {
+				echo '<div class="main-menu"><ul class="menu">';
+				wp_list_pages( array( 'title_li' => '' ) );
+				echo '</ul></div>';
 			}
 			?>
 			
 			<?php
+			$search_icon_status = get_theme_mod( 'hovercraft_search_icon', 'desktop_only' );
+
+			if ( in_array( $search_icon_status, array( 'desktop_only', 'desktop_and_mobile' ), true ) ) {
+				?>
+				<div class="search-icon-wrapper">
+					<?php
+					$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+
+					if ( 'material_icons_classic' === $hovercraft_layout_icons ) {
+						?>
+						<i class="material-icons search">search</i>
+						<?php
+					} elseif ( 'font_awesome_version_6' === $hovercraft_layout_icons ) {
+						?>
+						<i class="fas fa-search"></i>
+						<?php
+					}
+					?>
+				</div><!-- search-icon-wrapper -->
+				<?php
+			}
+			?>
+			
+			<?php if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart ) { ?>
+				<div class="cart-icon-wrapper">
+					<a href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+						<?php
+						$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
+
+						if ( 'material_icons_classic' === $hovercraft_layout_icons ) {
+							?>
+							<i class="material-icons shopping_cart">shopping_cart</i>
+							<?php
+						} elseif ( 'font_awesome_version_6' === $hovercraft_layout_icons ) {
+							?>
+							<i class="fas fa-shopping-cart"></i>
+							<?php
+						}
+						?>
+					</a>
+					<div class="notification-dot"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></div>
+				</div><!-- cart-icon-wrapper -->
+			<?php } ?>
+			
+			<?php
+			if ( has_nav_menu( 'cta-header-secondary' ) ) {
+				wp_nav_menu( array(
+					'theme_location'  => 'cta-header-secondary',
+					'menu_class'      => 'cta',
+					'container_class' => 'cta-header-secondary',
+				) );
+			}
+
 			if ( has_nav_menu( 'cta-header-primary' ) ) {
-    		// User has assigned menu to this location;
-    		// https://wordpress.stackexchange.com/questions/32739/wp-nav-menu-show-menu-only-if-one-exists-otherwise-show-nothing
-    		wp_nav_menu( array( 
-        	'theme_location' => 'cta-header-primary', 
-        	'menu_class' => 'cta', 
-        	'container_class' => 'cta-header-primary'
-    		) );
+				wp_nav_menu( array(
+					'theme_location'  => 'cta-header-primary',
+					'menu_class'      => 'cta',
+					'container_class' => 'cta-header-primary',
+				) );
 			}
 			?>
 		</div><!-- menu-desktop -->
@@ -93,5 +176,3 @@
 		
 <div class="clear"></div>
 </div><!-- inner -->
-
-<!-- https://www.wpbeginner.com/plugins/how-to-add-a-full-screen-search-overlay-in-wordpress/ -->
