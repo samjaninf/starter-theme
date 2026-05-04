@@ -16,7 +16,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
     // enqueue the quantity buttons js file
     wp_enqueue_script(
-        'hovercraft-quantity-buttons',
+        'hovercraft_quantity_buttons',
         get_template_directory_uri() . '/assets/js/quantity-buttons.js',
         array(),
         $script_version,
