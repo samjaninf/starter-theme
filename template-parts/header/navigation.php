@@ -67,7 +67,7 @@ if ( 'fixed' === $hovercraft_desktop_header_width ) {
 
 			if ( 'overlay' === $hovercraft_mobile_menu ) {
 				?>
-				<a class="nav-icon mobile-menu-trig" onclick="openNav()">
+				<a class="nav-icon mobile-menu-trig" onclick="hovercraftOpenNav()">
 				<?php
 			} else {
 				?>
