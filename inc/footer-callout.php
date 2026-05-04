@@ -39,9 +39,9 @@ if ( $menu_populated_cta_footer_callout ) {
 	'before_title'  => '<h3 class="widget-title">',
 	'after_title'   => '</h3>'
 	);
-};
+}
 	
-register_sidebar($footer_callout_array);
+register_sidebar( $footer_callout_array );
 }
 
 add_action( 'widgets_init', 'hovercraft_footer_callout' );
