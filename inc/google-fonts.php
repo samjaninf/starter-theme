@@ -27,7 +27,7 @@ function hovercraft_enqueue_google_fonts() {
 
     if ( ! empty( $google_fonts ) ) {
         $google_fonts_url = 'https://fonts.googleapis.com/css2?' . implode( '&', $google_fonts ) . '&display=swap';
-        wp_enqueue_style( 'google-fonts', esc_url_raw( $google_fonts_url ), array(), HOVERCRAFT_VERSION, 'all' );
+        wp_enqueue_style( 'hovercraft_google_fonts', esc_url_raw( $google_fonts_url ), array(), HOVERCRAFT_VERSION, 'all' );
     }
 }
 
