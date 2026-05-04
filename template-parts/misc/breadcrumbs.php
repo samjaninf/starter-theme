@@ -6,13 +6,13 @@ if ( $hovercraft_breadcrumbs === 'sitewide' || $hovercraft_breadcrumbs === 'site
 	if ( $hovercraft_breadcrumbs === 'sitewide_except_homepage' && ! is_front_page() ) { ?>
 		
 		<div class="breadcrumbs">
-    		<?php ah_breadcrumb(); ?>
+    		<?php hovercraft_breadcrumb(); ?>
 		</div><!-- breadcrumbs -->
 		
 	<?php } elseif ( $hovercraft_breadcrumbs === 'sitewide' ) { ?>
 		
 		<div class="breadcrumbs">
-    		<?php ah_breadcrumb(); ?>
+    		<?php hovercraft_breadcrumb(); ?>
 		</div><!-- breadcrumbs -->	
 
 	<?php }
