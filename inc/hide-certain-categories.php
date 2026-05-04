@@ -1,24 +1,24 @@
 <?php
 
-function wpa_31553( $wp_query ) {
+add_action( 'pre_get_posts', 'hovercraft_hide_certain_categories' );
 
-    //$wp_query is passed by reference.  we don't need to return anything. whatever changes made inside this function will automatically effect the global variable
+function hovercraft_hide_certain_categories( $wp_query ) {
+	$portal_category = get_theme_mod( 'hovercraft_portal_category', 'none' );
+	$portal_category_id = get_cat_ID( $portal_category );
 
-	$portal_category = get_theme_mod( 'hovercraft_portal_category', 'none' ); // depends on inc/categories-array.php
-	$port_cat_id = get_cat_ID($portal_category);
-	
-	$bullets_category = get_theme_mod( 'hovercraft_bullets_category', 'none' ); // depends on inc/categories-array.php
-	$bull_cat_id = get_cat_ID($bullets_category);
-	
-    $excluded = array($port_cat_id,$bull_cat_id);  //made it an array in case you need to exclude more than one
+	$bullets_category = get_theme_mod( 'hovercraft_bullets_category', 'none' );
+	$bullets_category_id = get_cat_ID( $bullets_category );
 
-    // only exclude on the front end
-    if( !is_admin() && !is_category(array($port_cat_id,$bull_cat_id)) ) {
-        $wp_query->set('category__not_in', $excluded);
-    }
+	$excluded_categories = array_filter( array( $portal_category_id, $bullets_category_id ) );
+
+	if ( empty( $excluded_categories ) ) {
+		return;
+	}
+
+	if ( ! is_admin() && ! is_category( $excluded_categories ) ) {
+		$wp_query->set( 'category__not_in', $excluded_categories );
+	}
 }
-
-add_action('pre_get_posts', 'wpa_31553' );
 
 // https://wordpress.stackexchange.com/questions/31553/is-there-a-quick-way-to-hide-category-from-everywhere
 // https://stackoverflow.com/questions/13750619/if-is-not-category-wordpress-with-multiple-categories

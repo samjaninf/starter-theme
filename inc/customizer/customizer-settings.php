@@ -1,6 +1,6 @@
 <?php
 
-function hovercraft_customizer($wp_customize) {
+function hovercraft_customizer( $wp_customize ) {
 	// load google fonts array (via functions.php)
 	$hovercraft_google_fonts_array = hovercraft_google_fonts_array();
 
@@ -5372,7 +5372,7 @@ $wp_customize->add_control( 'hovercraft_license_key', array(
 // end function hovercraft_customizer
 }
 
-add_action('customize_register', 'hovercraft_customizer');
+add_action( 'customize_register', 'hovercraft_customizer' );
 
 // sanitize select input
 function hovercraft_sanitize_select( $input, $setting ) {

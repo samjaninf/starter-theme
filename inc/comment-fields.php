@@ -35,14 +35,14 @@ function hovercraft_comment_fields( $fields ) {
 }
 
 // modify default comment form headings
-add_filter( 'comment_form_defaults', function( $defaults ) {
+add_filter( 'comment_form_defaults', function ( $defaults ) {
     $defaults['title_reply_before'] = '<h3 id="reply-title" class="comment-reply-title">';
     $defaults['title_reply_after']  = '</h3>';
     return $defaults;
 });
 
 // allow child themes or plugins to override comment listing args
-add_filter( 'hovercraft_comments_args', function( $args ) {
+add_filter( 'hovercraft_comments_args', function ( $args ) {
     return $args; // return unmodified by default
 });
 

@@ -335,18 +335,20 @@ function hovercraft_register_sidebars() {
         )
     );
 
-    // Register each sidebar
-    foreach ($sidebars as $sidebar) {
-        register_sidebar(array(
-            'name'          => $sidebar['name'],
-            'id'            => $sidebar['id'],
-            'before_widget' => '<div class="' . $sidebar['class'] . ' widget-wrapper">',
-            'after_widget'  => '</div>',
-            'before_title'  => isset($sidebar['title_tag']) ? '<' . $sidebar['title_tag'] . ' class="widget-title">' : '<h3 class="widget-title">',
-            'after_title'   => isset($sidebar['title_tag']) ? '</' . $sidebar['title_tag'] . '>' : '</h3>',
-        ));
+    // register each sidebar
+    foreach ( $sidebars as $sidebar ) {
+        register_sidebar(
+            array(
+                'name'          => $sidebar['name'],
+                'id'            => $sidebar['id'],
+                'before_widget' => '<div class="' . $sidebar['class'] . ' widget-wrapper">',
+                'after_widget'  => '</div>',
+                'before_title'  => isset( $sidebar['title_tag'] ) ? '<' . $sidebar['title_tag'] . ' class="widget-title">' : '<h3 class="widget-title">',
+                'after_title'   => isset( $sidebar['title_tag'] ) ? '</' . $sidebar['title_tag'] . '>' : '</h3>',
+            )
+        );
     }
 }
-add_action('widgets_init', 'hovercraft_register_sidebars');
+add_action( 'widgets_init', 'hovercraft_register_sidebars' );
 
 // Ref: ChatGPT
