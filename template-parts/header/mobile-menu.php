@@ -1,7 +1,7 @@
-<div id="myNav" class="overlay">
+<div id="hovercraft-overlay-menu" class="overlay">
 
 	<!-- button to close the overlay navigation -->
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+	<a href="javascript:void(0)" class="closebtn" onclick="hovercraftCloseNav()">
 		<?php
 		// choose icon set
 		$hovercraft_layout_icons = get_theme_mod( 'hovercraft_layout_icons', 'material_icons_classic' );
@@ -49,7 +49,7 @@
 		}
 		?>
 	</div>
-</div><!-- myNav -->
+</div><!-- hovercraft-overlay-menu -->
 
 <div id="offcanvas">
 	<h4 class="sitename-offcanvas"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></h4>
