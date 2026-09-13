@@ -15,6 +15,16 @@ function hovercraft_register_page_tags() {
 }
 add_action( 'init', 'hovercraft_register_page_tags' );
 
+// noindex tag archives
+function hovercraft_noindex_tag_archives( $robots ) {
+	if ( is_tag() ) {
+		$robots['noindex'] = true;
+	}
+
+	return $robots;
+}
+add_filter( 'wp_robots', 'hovercraft_noindex_tag_archives' );
+
 // get linked post tags
 function hovercraft_show_tags() {
 	$post_tags = get_the_tags();
@@ -25,7 +35,7 @@ function hovercraft_show_tags() {
 	}
 
 	foreach ( $post_tags as $tag ) {
-		$tag_links[] = '<a rel="nofollow" href="' . esc_url( get_tag_link( $tag->term_id ) ) . '">' . esc_html( $tag->name ) . '</a>';
+		$tag_links[] = '<a href="' . esc_url( get_tag_link( $tag->term_id ) ) . '">' . esc_html( $tag->name ) . '</a>';
 	}
 
 	return implode( ', ', $tag_links );
