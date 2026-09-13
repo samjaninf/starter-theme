@@ -123,6 +123,7 @@ require get_template_directory() . '/inc/fonts/google-fonts.php';
 
 // metadata
 require get_template_directory() . '/inc/metadata/metadata-open-graph.php';
+require get_template_directory() . '/inc/metadata/metadata-robots.php';
 
 // meta boxes
 require get_template_directory() . '/inc/meta-boxes/meta-box.php';
