@@ -15,16 +15,6 @@ function hovercraft_register_page_tags() {
 }
 add_action( 'init', 'hovercraft_register_page_tags' );
 
-// noindex tag archives
-function hovercraft_noindex_tag_archives( $robots ) {
-	if ( is_tag() ) {
-		$robots['noindex'] = true;
-	}
-
-	return $robots;
-}
-add_filter( 'wp_robots', 'hovercraft_noindex_tag_archives' );
-
 // get linked post tags
 function hovercraft_show_tags() {
 	$post_tags = get_the_tags();
